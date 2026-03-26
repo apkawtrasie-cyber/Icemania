@@ -46,8 +46,7 @@ export const NAV_LINKS: readonly NavLink[] = [
 // ── Hero Section ─────────────────────────────────────────────────────────────
 
 export const HERO = {
-  image:
-    "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=clip&w=1200&q=85",
+  image: "/hero.jpg",
   imageAlt: "Prawdziwe domowe lody rzemieślnicze",
   badge: "Domowe Lody Rzemieślnicze",
   badgeDesktop: "Domowe Lody Rzemieślnicze · Kraków",

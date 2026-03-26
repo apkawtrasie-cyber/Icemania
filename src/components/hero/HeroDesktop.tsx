@@ -69,7 +69,7 @@ export default function HeroDesktop({
           src={HERO.image}
           alt={HERO.imageAlt}
           fill
-          className="object-contain"
+          className="object-cover"
           priority
           sizes="(min-width: 1024px) 100vw, 100vw"
         />
