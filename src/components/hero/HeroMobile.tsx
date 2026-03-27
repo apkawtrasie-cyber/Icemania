@@ -5,20 +5,17 @@ import { HERO } from "@/config/site-data";
 export default function HeroMobile() {
   return (
     <div className="lg:hidden">
-      {/* 1) Sticky image panel — pinned while content scrolls over */}
-      <div className="sticky top-0 z-0 h-[85vh] w-full overflow-hidden">
-        <div className="relative h-full w-[90%] mx-auto">
-          <Image
-            src={HERO.imageMobile}
-            alt={HERO.imageAlt}
-            fill
-            className="object-cover object-center rounded-b-3xl"
-            priority
-            sizes="90vw"
-          />
-        </div>
-        {/* Badge overlay at the bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#F9F5E7] to-transparent" />
+      {/* 1) Sticky image — pinned, shows original photo from top */}
+      <div className="sticky top-0 z-0 w-full overflow-hidden">
+        <Image
+          src={HERO.imageMobile}
+          alt={HERO.imageAlt}
+          width={1080}
+          height={1350}
+          className="w-full h-auto"
+          priority
+          sizes="100vw"
+        />
       </div>
 
       {/* 2) Content block — scrolls over the sticky image */}
