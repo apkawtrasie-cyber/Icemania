@@ -1,6 +1,8 @@
 "use client";
 
+import { useRef } from "react";
 import { Leaf, MapPin, Clock, Download } from "lucide-react";
+import { gsap, useGSAP } from "@/lib/gsap";
 
 const benefits = [
   {
@@ -21,8 +23,42 @@ const benefits = [
 ] as const;
 
 export default function B2BSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      // Cards staggered from bottom
+      gsap.from("[data-card]", {
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: "[data-card]",
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      });
+
+      // CTA fade in
+      gsap.from("[data-cta]", {
+        y: 40,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: "[data-cta]",
+          start: "top 90%",
+          toggleActions: "play none none none",
+        },
+      });
+    },
+    { scope: sectionRef }
+  );
+
   return (
-    <section id="b2b" className="py-20 lg:py-28 bg-[#F9F5E7]">
+    <section ref={sectionRef} id="b2b" className="py-20 lg:py-28 bg-[#F9F5E7]">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-16">
         {/* Header */}
         <div className="text-center mb-16">
@@ -44,6 +80,7 @@ export default function B2BSection() {
             return (
               <div
                 key={benefit.title}
+                data-card
                 className="bg-white rounded-2xl p-8 border border-[#EDE5CA] text-center"
               >
                 <div className="w-16 h-16 rounded-full bg-[#B4CFB0]/20 flex items-center justify-center mx-auto mb-5">
@@ -61,7 +98,7 @@ export default function B2BSection() {
         </div>
 
         {/* CTA */}
-        <div className="text-center">
+        <div data-cta className="text-center">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="/oferta-b2b.pdf"
