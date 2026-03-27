@@ -46,6 +46,7 @@ interface AuthContextValue extends AuthState {
   register: (email: string, password: string, name: string) => string | null;
   logout: () => void;
   updateProfile: (data: Partial<UserData>) => void;
+  changePassword: (oldPassword: string, newPassword: string) => string | null;
   addOrder: (order: Omit<Order, "id" | "createdAt">) => void;
   cancelOrder: (orderId: string) => void;
 }

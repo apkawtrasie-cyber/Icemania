@@ -4,51 +4,48 @@ import { HERO } from "@/config/site-data";
 
 export default function HeroMobile() {
   return (
-    <div className="lg:hidden relative min-h-screen">
-      {/* Full screen background image */}
-      <div className="absolute inset-0 w-full h-full">
-        <Image
-          src={HERO.imageMobile}
-          alt={HERO.imageAlt}
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#2A1A1A]/40 via-[#2A1A1A]/20 to-[#F9F5E7]" />
+    <div className="lg:hidden">
+      {/* 1) Sticky image panel — pinned while content scrolls over */}
+      <div className="sticky top-0 z-0 h-[85vh] w-full overflow-hidden">
+        <div className="relative h-full w-[90%] mx-auto">
+          <Image
+            src={HERO.imageMobile}
+            alt={HERO.imageAlt}
+            fill
+            className="object-cover object-center rounded-b-3xl"
+            priority
+            sizes="90vw"
+          />
+        </div>
+        {/* Badge overlay at the bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#F9F5E7] to-transparent" />
       </div>
 
-      {/* Content overlay */}
-      <div className="relative z-10 flex flex-col min-h-screen justify-between px-7 pt-20 pb-32">
-        {/* Top content */}
-        <div>
-          <p className="text-[11px] uppercase tracking-[0.22em] text-[#F9F5E7] font-semibold mb-4 drop-shadow-md">
-            {HERO.badge}
-          </p>
-          <h1 className="text-[2.8rem] leading-[1.0] font-serif font-bold text-white drop-shadow-lg mb-5">
-            {HERO.title.line1}
-            <br />
-            {HERO.title.line2}
-            <br />
-            {HERO.title.line3}
-          </h1>
-          <p className="text-sm text-white/90 leading-relaxed mb-10 max-w-xs drop-shadow-md">
-            {HERO.descriptionMobile}
-          </p>
-        </div>
-
-        {/* Bottom buttons */}
+      {/* 2) Content block — scrolls over the sticky image */}
+      <div className="relative z-10 bg-[#F9F5E7] -mt-6 px-7 pt-10 pb-20">
+        <p className="text-[11px] uppercase tracking-[0.22em] text-[#B4CFB0] font-semibold mb-4">
+          {HERO.badge}
+        </p>
+        <h1 className="text-[2.6rem] leading-[1.0] font-serif font-bold text-[#5C1A1B] mb-5">
+          {HERO.title.line1}
+          <br />
+          {HERO.title.line2}
+          <br />
+          {HERO.title.line3}
+        </h1>
+        <p className="text-sm text-[#2A1A1A]/55 leading-relaxed mb-10 max-w-xs">
+          {HERO.descriptionMobile}
+        </p>
         <div className="flex flex-col gap-3 max-w-[260px]">
           <Link
             href={HERO.ctaPrimary.href}
-            className="flex items-center justify-center h-12 rounded-full bg-[#5C1A1B] text-[#F9F5E7] text-sm font-medium hover:bg-[#3d1112] transition-colors shadow-lg"
+            className="flex items-center justify-center h-12 rounded-full bg-[#5C1A1B] text-[#F9F5E7] text-sm font-medium hover:bg-[#3d1112] transition-colors"
           >
             {HERO.ctaPrimary.label}
           </Link>
           <Link
             href={HERO.ctaSecondary.href}
-            className="flex items-center justify-center h-12 rounded-full bg-[#F9F5E7]/90 text-[#5C1A1B] text-sm font-medium hover:bg-[#F9F5E7] transition-colors shadow-lg"
+            className="flex items-center justify-center h-12 rounded-full bg-[#B4CFB0] text-[#2A1A1A] text-sm font-medium hover:bg-[#8FB88A] transition-colors"
           >
             {HERO.ctaSecondary.label}
           </Link>

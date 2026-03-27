@@ -46,8 +46,8 @@ export const NAV_LINKS: readonly NavLink[] = [
 // ── Hero Section ─────────────────────────────────────────────────────────────
 
 export const HERO = {
-  imageDesktop: "/hero.lodyzfarmy.webp",
-  imageMobile: "/hero.lodyzfarmy.mobile.webp",
+  imageDesktop: "/hero.lodyzfarmy.jpeg",
+  imageMobile: "/hero.lodyzfarmy.mobile.jpeg",
   imageAlt: "Prawdziwe domowe lody rzemieślnicze z farmy w Michowie",
   badge: "Domowe Lody Rzemieślnicze",
   badgeDesktop: "Domowe Lody Rzemieślnicze · Michów",
