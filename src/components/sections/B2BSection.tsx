@@ -66,7 +66,7 @@ export default function B2BSection() {
             Współpraca
           </p>
           <h2 className="font-serif text-3xl lg:text-4xl font-bold text-[#5C1A1B] mb-4">
-            Serwuj Lody z Farmy w swoim lokalu!
+            Serwuj Ice Cream w swoim lokalu!
           </h2>
           <p className="text-lg text-[#2A1A1A]/60 max-w-2xl mx-auto">
             Szukasz produktu, który wyróżni Cię na tle konkurencji?

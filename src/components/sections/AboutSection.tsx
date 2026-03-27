@@ -16,7 +16,7 @@ export default function AboutSection() {
               O nas
             </p>
             <h2 className="font-serif text-4xl lg:text-[3.2rem] font-bold text-[#5C1A1B] leading-[1.05] mb-8">
-              Lody z Farmy –<br />
+              Ice Cream –<br />
               Rodzinna Pasja z Michowa
             </h2>
 
@@ -26,7 +26,7 @@ export default function AboutSection() {
                 który smakuje tak, jak owoce zerwane prosto z krzaka i świeże mleko u babci.
               </p>
               <p className="text-base">
-                Dziś dzielimy się tym smakiem z Wami. Lody z Farmy to nie tylko biznes, 
+                Dziś dzielimy się tym smakiem z Wami. Ice Cream to nie tylko biznes, 
                 to nasz sposób na pokazanie, że prawdziwe jedzenie nie potrzebuje ulepszaczy.
               </p>
               <p className="text-base">
