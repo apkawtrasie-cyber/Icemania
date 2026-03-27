@@ -2,9 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import { POPULAR_PRODUCTS } from "@/config/site-data";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function ShopSection() {
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <section id="sklep" className="w-full bg-[#EDE5CA]/40 py-0 overflow-hidden">
@@ -17,17 +19,17 @@ export default function ShopSection() {
           <div className="flex items-center justify-center py-20 lg:py-0">
             <div className="relative w-72 h-72 lg:w-80 lg:h-80 rounded-full bg-[#B4CFB0] flex flex-col items-center justify-center text-center p-8 shadow-lg">
               <h2 className="font-serif text-3xl lg:text-4xl font-bold text-[#2A1A1A] leading-[1.05] mb-6">
-                Smakluj
+                {t("shop.heading.line1")}
                 <br />
-                Radość
+                {t("shop.heading.line2")}
                 <br />
-                Domu.
+                {t("shop.heading.line3")}
               </h2>
               <a
                 href="/menu"
                 className="px-7 py-2.5 rounded-full bg-[#5C1A1B] text-[#F9F5E7] text-xs font-bold uppercase tracking-wider hover:bg-[#3d1112] transition-colors"
               >
-                Zamów teraz
+                {t("shop.orderNow")}
               </a>
             </div>
           </div>
@@ -35,10 +37,10 @@ export default function ShopSection() {
           {/* PRAWY panel — popularne kubełki */}
           <div className="flex flex-col justify-center py-16 lg:py-20 lg:pl-12 border-t lg:border-t-0 lg:border-l border-[#EDE5CA]">
             <p className="text-[11px] uppercase tracking-[0.28em] text-[#B4CFB0] font-semibold mb-4">
-              Najpopularniejsze kubełki
+              {t("shop.popularBuckets")}
             </p>
             <h3 className="font-serif text-2xl font-bold text-[#5C1A1B] mb-10">
-              Weź do domu
+              {t("shop.takeHome")}
             </h3>
             <div className="flex gap-6">
               {POPULAR_PRODUCTS.map((p) => (
@@ -64,7 +66,7 @@ export default function ShopSection() {
               href="/menu"
               className="mt-10 inline-flex items-center gap-2 text-sm font-medium text-[#5C1A1B] hover:text-[#3d1112] transition-colors"
             >
-              Zobacz całe menu
+              {t("shop.seeFullMenu")}
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>

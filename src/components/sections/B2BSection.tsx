@@ -3,27 +3,17 @@
 import { useRef } from "react";
 import { Leaf, MapPin, Clock, Download } from "lucide-react";
 import { gsap, useGSAP } from "@/lib/gsap";
-
-const benefits = [
-  {
-    icon: Leaf,
-    title: "Czysta Etykieta",
-    description: "Produkt 100% naturalny, bez sztucznych aromatów.",
-  },
-  {
-    icon: MapPin,
-    title: "Lokalność",
-    description: "Przyciągnij klientów, którzy cenią produkty prosto od rolnika.",
-  },
-  {
-    icon: Clock,
-    title: "Wsparcie",
-    description: "Dostarczamy lody zawsze świeże i na czas.",
-  },
-] as const;
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function B2BSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { t } = useTranslation();
+
+  const benefits = [
+    { icon: Leaf, title: t("b2b.benefit1.title"), description: t("b2b.benefit1.desc") },
+    { icon: MapPin, title: t("b2b.benefit2.title"), description: t("b2b.benefit2.desc") },
+    { icon: Clock, title: t("b2b.benefit3.title"), description: t("b2b.benefit3.desc") },
+  ];
 
   useGSAP(
     () => {
@@ -63,13 +53,13 @@ export default function B2BSection() {
         {/* Header */}
         <div className="text-center mb-16">
           <p className="text-[11px] uppercase tracking-[0.28em] text-[#B4CFB0] font-semibold mb-4">
-            Współpraca
+            {t("b2b.badge")}
           </p>
           <h2 className="font-serif text-3xl lg:text-4xl font-bold text-[#5C1A1B] mb-4">
-            Serwuj Ice Cream w swoim lokalu!
+            {t("b2b.heading")}
           </h2>
           <p className="text-lg text-[#2A1A1A]/60 max-w-2xl mx-auto">
-            Szukasz produktu, który wyróżni Cię na tle konkurencji?
+            {t("b2b.subheading")}
           </p>
         </div>
 
@@ -105,13 +95,13 @@ export default function B2BSection() {
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#5C1A1B] text-[#F9F5E7] text-sm font-medium hover:bg-[#3d1112] transition-colors"
             >
               <Download size={18} />
-              Pobierz ofertę dla partnerów
+              {t("b2b.downloadOffer")}
             </a>
             <a
               href="#kontakt"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#B4CFB0] text-[#2A1A1A] text-sm font-medium hover:bg-[#8FB88A] transition-colors"
             >
-              Zapytaj o współpracę
+              {t("b2b.askCooperation")}
             </a>
           </div>
         </div>

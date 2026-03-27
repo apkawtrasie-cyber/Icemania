@@ -4,17 +4,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Home, IceCreamCone, ShoppingCart, UserRound } from "lucide-react";
 import { cn } from "@/lib/cn";
-
-const bottomLinks = [
-  { href: "/", label: "Home", icon: Home },
-  { href: "/#menu", label: "Smaki", icon: IceCreamCone },
-  { href: "/menu", label: "Menu", icon: null },
-  { href: "/koszyk", label: "Koszyk", icon: ShoppingCart },
-  { href: "/konto", label: "Konto", icon: UserRound },
-] as const;
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function MobileBottomNav() {
   const pathname = usePathname();
+  const { t } = useTranslation();
+
+  const bottomLinks = [
+    { href: "/", label: t("bottomNav.home"), icon: Home },
+    { href: "/#menu", label: t("bottomNav.flavors"), icon: IceCreamCone },
+    { href: "/menu", label: t("bottomNav.menu"), icon: null },
+    { href: "/koszyk", label: t("bottomNav.cart"), icon: ShoppingCart },
+    { href: "/konto", label: t("bottomNav.account"), icon: UserRound },
+  ] as const;
 
   return (
     <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-[100] bg-[#F9F5E7]/95 backdrop-blur-md border-t border-[#EDE5CA] pb-[env(safe-area-inset-bottom)]">

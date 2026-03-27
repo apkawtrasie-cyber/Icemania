@@ -8,6 +8,7 @@ import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import ProfilePanel from "./ProfilePanel";
 import OrdersPanel from "./OrdersPanel";
+import { useTranslation } from "@/hooks/useTranslation";
 
 type AuthView = "login" | "register";
 type AccountTab = "profile" | "orders" | "archive";
@@ -16,6 +17,7 @@ export default function AccountPage() {
   const { isLoggedIn } = useAuth();
   const [view, setView] = useState<AuthView>("login");
   const [activeTab, setActiveTab] = useState<AccountTab>("orders");
+  const { t } = useTranslation();
 
   if (!isLoggedIn) {
     return (
@@ -44,7 +46,7 @@ export default function AccountPage() {
             )}
           >
             <Package size={16} />
-            Zamówienia
+            {t("account.orders")}
           </button>
           <button
             onClick={() => setActiveTab("archive")}
@@ -56,7 +58,7 @@ export default function AccountPage() {
             )}
           >
             <Archive size={16} />
-            Archiwum
+            {t("account.archive")}
           </button>
           <button
             onClick={() => setActiveTab("profile")}
@@ -67,7 +69,7 @@ export default function AccountPage() {
                 : "bg-white text-[#2A1A1A]/60 hover:text-[#5C1A1B]"
             )}
           >
-            Moje konto
+            {t("account.myAccount")}
           </button>
         </div>
 

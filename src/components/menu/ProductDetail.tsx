@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { ArrowLeft, ShoppingCart } from "lucide-react";
 import type { MenuItem } from "@/config/site-data";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface ProductDetailProps {
   item: MenuItem;
@@ -11,6 +12,7 @@ interface ProductDetailProps {
 
 export default function ProductDetail({ item }: ProductDetailProps) {
   const router = useRouter();
+  const { t } = useTranslation();
 
   const handleAddToCart = () => {
     // TODO: dodaj logikę zapisu do koszyka (Context/localStorage)
@@ -26,7 +28,7 @@ export default function ProductDetail({ item }: ProductDetailProps) {
           className="inline-flex items-center gap-2 text-sm font-medium text-[#B4CFB0] hover:text-[#8FB88A] transition-colors cursor-pointer"
         >
           <ArrowLeft size={16} />
-          Powrót
+          {t("menuPage.back")}
         </button>
       </div>
 
@@ -48,7 +50,7 @@ export default function ProductDetail({ item }: ProductDetailProps) {
           {/* Info */}
           <div className="flex flex-col justify-center">
             <p className="text-[11px] uppercase tracking-[0.28em] text-[#B4CFB0] font-semibold mb-4">
-              Lody rzemieślnicze
+              {t("menuPage.artisanIceCream")}
             </p>
             <h1 className="font-serif text-4xl lg:text-5xl font-bold text-[#5C1A1B] leading-[1.05] mb-6">
               {item.name}
@@ -60,7 +62,7 @@ export default function ProductDetail({ item }: ProductDetailProps) {
             {/* Ingredients */}
             <div className="mb-10">
               <h2 className="text-xs uppercase tracking-[0.2em] text-[#5C1A1B] font-bold mb-4">
-                Skład
+                {t("menuPage.ingredients")}
               </h2>
               <ul className="flex flex-wrap gap-2">
                 {item.ingredients.map((ing) => (
@@ -84,7 +86,7 @@ export default function ProductDetail({ item }: ProductDetailProps) {
                 className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#B4CFB0] text-[#2A1A1A] text-sm font-bold uppercase tracking-wider hover:bg-[#8FB88A] transition-colors cursor-pointer"
               >
                 <ShoppingCart size={18} strokeWidth={2} />
-                Dodaj do koszyka
+                {t("menuPage.addToCart")}
               </button>
             </div>
           </div>

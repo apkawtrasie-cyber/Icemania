@@ -1,24 +1,29 @@
-import Link from "next/link";
+"use client";
 
-const footerLinks = {
-  "Social links": [
-    { href: "#", label: "Instagram" },
-    { href: "#", label: "Facebook" },
-    { href: "#", label: "TikTok" },
-  ],
-  "O nas": [
-    { href: "#o-nas", label: "Nasza historia" },
-    { href: "#zamowienie", label: "Jak zamawiać" },
-    { href: "#sklep", label: "Sklep" },
-  ],
-  Contact: [
-    { href: "mailto:andrzejmich2@gmail.com", label: "andrzejmich2@gmail.com" },
-    { href: "tel:+41782067379", label: "+41 782 067 379" },
-    { href: "#kontakt", label: "Privacy Policy" },
-  ],
-};
+import Link from "next/link";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Footer() {
+  const { t } = useTranslation();
+
+  const footerLinks = {
+    "Social links": [
+      { href: "#", label: "Instagram" },
+      { href: "#", label: "Facebook" },
+      { href: "#", label: "TikTok" },
+    ],
+    [t("footer.aboutUs")]: [
+      { href: "#o-nas", label: t("footer.ourStory") },
+      { href: "#zamowienie", label: t("footer.howToOrder") },
+      { href: "#sklep", label: t("footer.shop") },
+    ],
+    Contact: [
+      { href: "mailto:andrzejmich2@gmail.com", label: "andrzejmich2@gmail.com" },
+      { href: "tel:+41782067379", label: "+41 782 067 379" },
+      { href: "#kontakt", label: "Privacy Policy" },
+    ],
+  };
+
   return (
     <footer className="w-full bg-[#5C1A1B] text-[#F9F5E7]">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-16 pt-20 pb-10" style={{ paddingBottom: "calc(6rem + env(safe-area-inset-bottom,0px))" }}>
@@ -29,12 +34,11 @@ export default function Footer() {
               Ice<span className="text-[#B4CFB0]">mania</span>
             </Link>
             <p className="text-[#F9F5E7]/45 text-sm leading-relaxed mb-2 max-w-[180px]">
-              Made with care in Kraków
+              {t("footer.tagline")}
             </p>
             <div className="w-8 h-px bg-[#B4CFB0]/40 mb-6" />
             <p className="text-[#F9F5E7]/40 text-xs leading-relaxed max-w-[180px]">
-              Prawdziwe lody. Bez pośpiechu.
-              Rzemieślniczo od 2022.
+              {t("footer.desc")}
             </p>
           </div>
 
@@ -63,10 +67,10 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-[#F9F5E7]/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-[#F9F5E7]/25">
-            © {new Date().getFullYear()} Icemania. Wszelkie prawa zastrzeżone.
+            © {new Date().getFullYear()} Icemania. {t("footer.allRights")}
           </p>
           <p className="text-xs text-[#F9F5E7]/25">
-            Made with <span className="text-[#B4CFB0]">♥</span> i naturalnych składników
+            Made with <span className="text-[#B4CFB0]">♥</span> {t("footer.madeWith")}
           </p>
         </div>
       </div>

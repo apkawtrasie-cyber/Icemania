@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { useMenuHeroAnimation } from "@/hooks/use-menu-hero-animation";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface MenuHeroProps {
   scrollTargetRef: React.RefObject<HTMLElement | null>;
@@ -15,6 +16,7 @@ const MenuHero = forwardRef<HTMLDivElement, MenuHeroProps>(
   ({ scrollTargetRef, className }, ref) => {
     const heroRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
+    const { t } = useTranslation();
 
     useMenuHeroAnimation({
       heroRef,
@@ -43,7 +45,7 @@ const MenuHero = forwardRef<HTMLDivElement, MenuHeroProps>(
           )}
         >
           <ArrowLeft size={16} />
-          Powrót do strony głównej
+          {t("menuPage.backHome")}
         </Link>
 
         {/* Tekst hero — animowany */}
@@ -52,13 +54,13 @@ const MenuHero = forwardRef<HTMLDivElement, MenuHeroProps>(
           className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
         >
           <h1 className="font-serif text-6xl lg:text-[6rem] xl:text-[7rem] font-bold text-[#F9F5E7] leading-[0.95] mb-8">
-            Pełne Menu
+            {t("menuPage.title")}
           </h1>
 
           <p className="text-lg lg:text-xl text-[#F9F5E7]/60 max-w-2xl leading-relaxed">
-            Odkryj wszystkie nasze mistrzowskie smaki.
+            {t("menuPage.subtitle1")}
             <br className="hidden lg:block" />
-            Każda gałka to efekt godzin pracy i pasji.
+            {t("menuPage.subtitle2")}
           </p>
         </div>
       </div>

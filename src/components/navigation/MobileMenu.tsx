@@ -4,7 +4,8 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ShoppingCart, Plus } from "lucide-react";
 import { gsap } from "@/lib/gsap";
-import { NAV_LINKS } from "@/config/site-data";
+import { useTranslation } from "@/hooks/useTranslation";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -13,6 +14,13 @@ interface MobileMenuProps {
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const menuRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
+
+  const navLinks = [
+    { href: "#menu", label: t("nav.smaki") },
+    { href: "#o-nas", label: t("nav.oNas") },
+    { href: "#sklep", label: t("nav.sklep") },
+  ];
 
   // Body scroll lock
   useEffect(() => {
@@ -64,7 +72,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
         {/* Linki — kolor pistacja */}
         <ul className="flex flex-col items-center gap-5 w-full">
-          {NAV_LINKS.map((link) => (
+          {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
@@ -82,10 +90,15 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               className="inline-flex items-center gap-2 text-base font-medium text-[#B4CFB0] hover:text-[#8FB88A] transition-colors"
             >
               <ShoppingCart size={18} strokeWidth={1.8} />
-              Koszyk
+              {t("nav.koszyk")}
             </Link>
           </li>
         </ul>
+
+        {/* Language switcher */}
+        <div className="flex justify-center">
+          <LanguageSwitcher />
+        </div>
 
         {/* CTA */}
         <Link
@@ -93,7 +106,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           onClick={onClose}
           className="mt-2 inline-block px-8 py-3 rounded-full bg-[#B4CFB0] text-[#5C1A1B] text-sm font-bold uppercase tracking-wider hover:bg-[#8FB88A] transition-colors"
         >
-          Zamów teraz
+          {t("nav.zamowTeraz")}
         </Link>
       </div>
     </div>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Footer from "@/components/footer/Footer";
+import { useTranslation } from "@/hooks/useTranslation";
 
 // Przykładowe dane koszyka - w produkcji to byłoby z Context API lub localStorage
 const initialCartItems = [
@@ -25,6 +26,7 @@ const initialCartItems = [
 
 export default function KoszykPage() {
   const [cartItems, setCartItems] = useState(initialCartItems);
+  const { t } = useTranslation();
 
   const updateQuantity = (id: number, newQuantity: number) => {
     if (newQuantity < 1) return;
@@ -53,7 +55,7 @@ export default function KoszykPage() {
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M10 12L6 8l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            Kontynuuj zakupy
+            {t("cart.continueShopping")}
           </Link>
         </div>
       </header>
@@ -62,17 +64,17 @@ export default function KoszykPage() {
       <section className="py-12 lg:py-16">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-16">
           <h1 className="font-serif text-4xl lg:text-5xl font-bold text-[#5C1A1B] mb-12">
-            Twój Koszyk
+            {t("cart.title")}
           </h1>
 
           {cartItems.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-xl text-[#2A1A1A]/60 mb-8">Twój koszyk jest pusty</p>
+              <p className="text-xl text-[#2A1A1A]/60 mb-8">{t("cart.empty")}</p>
               <Link
                 href="/menu"
                 className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-[#5C1A1B] text-[#F9F5E7] text-sm font-medium hover:bg-[#3d1112] transition-colors"
               >
-                Zobacz menu
+                {t("cart.seeMenu")}
               </Link>
             </div>
           ) : (
@@ -99,7 +101,7 @@ export default function KoszykPage() {
                         {item.name}
                       </h3>
                       <p className="text-sm text-[#2A1A1A]/60 mb-3">
-                        {item.price.toFixed(2)} zł / szt.
+                        {item.price.toFixed(2)} zł {t("cart.perUnit")}
                       </p>
 
                       {/* Quantity Controls */}
@@ -131,7 +133,7 @@ export default function KoszykPage() {
                         onClick={() => removeItem(item.id)}
                         className="text-xs text-[#2A1A1A]/40 hover:text-[#5C1A1B] transition-colors"
                       >
-                        Usuń
+                        {t("cart.remove")}
                       </button>
                     </div>
                   </div>
@@ -142,18 +144,18 @@ export default function KoszykPage() {
               <div className="lg:col-span-1">
                 <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-sm sticky top-6">
                   <h2 className="font-serif text-2xl font-bold text-[#5C1A1B] mb-6">
-                    Podsumowanie
+                    {t("cart.summary")}
                   </h2>
 
                   <div className="space-y-4 mb-6 pb-6 border-b border-[#EDE5CA]">
                     <div className="flex justify-between text-sm">
-                      <span className="text-[#2A1A1A]/60">Produkty</span>
+                      <span className="text-[#2A1A1A]/60">{t("cart.products")}</span>
                       <span className="font-semibold text-[#2A1A1A]">
                         {subtotal.toFixed(2)} zł
                       </span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-[#2A1A1A]/60">Dostawa</span>
+                      <span className="text-[#2A1A1A]/60">{t("cart.shipping")}</span>
                       <span className="font-semibold text-[#2A1A1A]">
                         {shipping.toFixed(2)} zł
                       </span>
@@ -162,7 +164,7 @@ export default function KoszykPage() {
 
                   <div className="flex justify-between mb-8">
                     <span className="font-serif text-xl font-bold text-[#5C1A1B]">
-                      Razem
+                      {t("cart.total")}
                     </span>
                     <span className="font-serif text-2xl font-bold text-[#5C1A1B]">
                       {total.toFixed(2)} zł
@@ -170,14 +172,14 @@ export default function KoszykPage() {
                   </div>
 
                   <button className="w-full py-4 rounded-full bg-[#5C1A1B] text-[#F9F5E7] text-sm font-bold uppercase tracking-wider hover:bg-[#3d1112] transition-colors mb-4">
-                    Przejdź do płatności
+                    {t("cart.checkout")}
                   </button>
 
                   <Link
                     href="/menu"
                     className="block text-center text-sm text-[#5C1A1B] hover:text-[#3d1112] transition-colors"
                   >
-                    Dodaj więcej produktów
+                    {t("cart.addMore")}
                   </Link>
                 </div>
               </div>

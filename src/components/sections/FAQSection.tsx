@@ -3,27 +3,17 @@
 import { useState } from "react";
 import { ChevronDown, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/cn";
-
-const faqs = [
-  {
-    question: "Czy Wasze lody są bezglutenowe?",
-    answer:
-      "Większość naszych smaków owocowych (sorbetów) oraz lody mleczne są naturalnie bezglutenowe. O szczegóły zawsze możesz zapytać naszą obsługę!",
-  },
-  {
-    question: "Gdzie mogę kupić lody w większym opakowaniu?",
-    answer:
-      "Prowadzimy sprzedaż na wynos w naszych punktach – pakujemy lody w specjalne termoboxy, abyś mógł cieszyć się nimi w domu.",
-  },
-  {
-    question: "Czy robicie lody na zamówienie (np. na wesela)?",
-    answer:
-      "Tak! Obsługujemy imprezy okolicznościowe. Skontaktuj się z nami, aby ustalić szczegóły.",
-  },
-] as const;
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { t } = useTranslation();
+
+  const faqs = [
+    { question: t("faq.q1"), answer: t("faq.a1") },
+    { question: t("faq.q2"), answer: t("faq.a2") },
+    { question: t("faq.q3"), answer: t("faq.a3") },
+  ];
 
   return (
     <section id="faq" className="py-20 lg:py-28 bg-[#EDE5CA]">
@@ -31,10 +21,10 @@ export default function FAQSection() {
         {/* Header */}
         <div className="text-center mb-12">
           <p className="text-[11px] uppercase tracking-[0.28em] text-[#B4CFB0] font-semibold mb-4">
-            Najczęstsze pytania
+            {t("faq.badge")}
           </p>
           <h2 className="font-serif text-3xl lg:text-4xl font-bold text-[#5C1A1B]">
-            Masz pytanie? Mamy odpowiedź.
+            {t("faq.heading")}
           </h2>
         </div>
 
@@ -76,14 +66,14 @@ export default function FAQSection() {
         {/* Additional help */}
         <div className="mt-12 text-center">
           <p className="text-sm text-[#2A1A1A]/50 mb-4">
-            Nie znalazłeś odpowiedzi na swoje pytanie?
+            {t("faq.notFound")}
           </p>
           <a
             href="#kontakt"
             className="inline-flex items-center gap-2 text-[#5C1A1B] font-medium hover:underline"
           >
             <HelpCircle size={16} />
-            Skontaktuj się z nami
+            {t("faq.contactUs")}
           </a>
         </div>
       </div>

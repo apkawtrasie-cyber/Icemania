@@ -1,7 +1,8 @@
-import { forwardRef } from "react";
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { HERO } from "@/config/site-data";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface HeroDesktopProps {
   titleRef: React.RefObject<HTMLDivElement | null>;
@@ -14,6 +15,8 @@ export default function HeroDesktop({
   imageWrapRef,
   scrollIndicatorRef,
 }: HeroDesktopProps) {
+  const { t } = useTranslation();
+
   return (
     <div className="hidden lg:block relative h-screen w-full">
       {/* Title — LEFT side, z-index: 5 */}
@@ -23,30 +26,30 @@ export default function HeroDesktop({
       >
         <div className="max-w-[52%]">
           <p className="text-[11px] uppercase tracking-[0.3em] text-[#B4CFB0] font-semibold mb-8">
-            {HERO.badgeDesktop}
+            {t("hero.badgeDesktop")}
           </p>
           <h1 className="text-[5.2rem] xl:text-[6.5rem] leading-[0.92] font-serif font-bold text-[#5C1A1B] mb-8">
-            {HERO.title.line1}
+            {t("hero.title.line1")}
             <br />
-            {HERO.title.line2}
+            {t("hero.title.line2")}
             <br />
-            {HERO.title.line3}
+            {t("hero.title.line3")}
           </h1>
           <p className="text-base text-[#2A1A1A]/55 max-w-xs leading-relaxed mb-12">
-            {HERO.descriptionDesktop}
+            {t("hero.descriptionDesktop")}
           </p>
           <div className="flex items-center gap-4">
             <Link
-              href={HERO.ctaPrimary.href}
+              href="#menu"
               className="px-8 py-3.5 rounded-full bg-[#5C1A1B] text-[#F9F5E7] text-sm font-medium hover:bg-[#3d1112] transition-colors duration-200"
             >
-              {HERO.ctaPrimary.label}
+              {t("hero.ctaPrimary")}
             </Link>
             <Link
-              href={HERO.ctaSecondary.href}
+              href="#o-nas"
               className="px-8 py-3.5 rounded-full bg-[#B4CFB0] text-[#2A1A1A] text-sm font-medium hover:bg-[#8FB88A] transition-colors duration-200"
             >
-              {HERO.ctaSecondary.label}
+              {t("hero.ctaSecondary")}
             </Link>
           </div>
         </div>
@@ -66,8 +69,8 @@ export default function HeroDesktop({
         }}
       >
         <Image
-          src={HERO.imageDesktop}
-          alt={HERO.imageAlt}
+          src="/hero.desktop.webp"
+          alt={t("hero.imageAlt")}
           fill
           className="object-cover"
           priority
@@ -81,7 +84,7 @@ export default function HeroDesktop({
         className="absolute bottom-10 right-16 z-[20] flex flex-col items-center gap-3"
       >
         <span className="text-[10px] uppercase tracking-[0.25em] text-[#5C1A1B]/40 font-medium">
-          {HERO.scrollIndicatorText}
+          {t("hero.scrollIndicator")}
         </span>
         <div className="relative w-[1px] h-14 bg-[#5C1A1B]/15 overflow-hidden">
           <div className="absolute top-0 left-0 w-full bg-[#B4CFB0] animate-scrollLine" />

@@ -1,39 +1,27 @@
 "use client";
 
 import { Milk, Cherry, Hand } from "lucide-react";
-
-const steps = [
-  {
-    icon: Milk,
-    title: "Mleko z Michowa",
-    description:
-      "Nie używamy proszku. Nasze lody powstają na bazie świeżego mleka i śmietanki z lokalnego gospodarstwa.",
-  },
-  {
-    icon: Cherry,
-    title: "Owoce z naszej Farmy",
-    description:
-      "Truskawki, maliny i porzeczki zbieramy sami. Wiemy, co jecie, bo sami to wyhodowaliśmy.",
-  },
-  {
-    icon: Hand,
-    title: "Tradycyjna produkcja",
-    description:
-      "Kręcimy lody małymi partiami, dbając o to, by każda gałka była idealnie kremowa.",
-  },
-] as const;
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function ProcessSection() {
+  const { t } = useTranslation();
+
+  const steps = [
+    { icon: Milk, title: t("process.step1.title"), description: t("process.step1.desc") },
+    { icon: Cherry, title: t("process.step2.title"), description: t("process.step2.desc") },
+    { icon: Hand, title: t("process.step3.title"), description: t("process.step3.desc") },
+  ];
+
   return (
     <section id="proces" className="py-20 lg:py-28 bg-[#EDE5CA]">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-16">
         {/* Header */}
         <div className="text-center mb-16">
           <p className="text-[11px] uppercase tracking-[0.28em] text-[#B4CFB0] font-semibold mb-4">
-            Droga od Pola do Wafelka
+            {t("process.badge")}
           </p>
           <h2 className="font-serif text-3xl lg:text-4xl font-bold text-[#5C1A1B] mb-4">
-            Nasz przepis jest prosty: Natura.
+            {t("process.heading")}
           </h2>
         </div>
 
@@ -43,7 +31,7 @@ export default function ProcessSection() {
             const Icon = step.icon;
             return (
               <div
-                key={step.title}
+                key={index}
                 className="relative flex flex-col items-center text-center"
               >
                 {/* Step number */}

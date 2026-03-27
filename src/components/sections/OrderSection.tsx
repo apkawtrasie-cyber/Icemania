@@ -1,22 +1,16 @@
-const steps = [
-  {
-    number: "01",
-    title: "Wybierz smaki",
-    desc: "Przeglądaj nasze menu i wybierz ulubione smaki spośród ponad 40 propozycji.",
-  },
-  {
-    number: "02",
-    title: "Skontaktuj się",
-    desc: "Zadzwoń lub napisz do nas. Odpowiadamy w ciągu godziny w godzinach otwarcia.",
-  },
-  {
-    number: "03",
-    title: "Odbierz zamówienie",
-    desc: "Odbierz świeże lody w naszej lodziarni lub zamów dostawę na swój event.",
-  },
-];
+"use client";
+
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function OrderSection() {
+  const { t } = useTranslation();
+
+  const steps = [
+    { number: "01", title: t("order.step1.title"), desc: t("order.step1.desc") },
+    { number: "02", title: t("order.step2.title"), desc: t("order.step2.desc") },
+    { number: "03", title: t("order.step3.title"), desc: t("order.step3.desc") },
+  ];
+
   return (
     <section
       id="zamowienie"
@@ -25,11 +19,11 @@ export default function OrderSection() {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-16">
         <div className="text-center mb-20">
           <p className="text-[11px] uppercase tracking-[0.28em] text-[#B4CFB0] font-semibold mb-5">
-            Jak zamawiać
+            {t("order.badge")}
           </p>
           <h2 className="font-serif text-5xl lg:text-[3.6rem] font-bold text-[#5C1A1B] leading-[1.0]">
-            Proste jak{" "}
-            <em className="italic">smak wanilii</em>
+            {t("order.heading")}{" "}
+            <em className="italic">{t("order.headingEm")}</em>
           </h2>
         </div>
 
@@ -87,13 +81,13 @@ export default function OrderSection() {
                 strokeLinejoin="round"
               />
             </svg>
-            Zadzwoń teraz
+            {t("order.callNow")}
           </a>
           <a
             href="#kontakt"
             className="flex items-center gap-3 px-9 py-3.5 rounded-full bg-[#B4CFB0] text-[#2A1A1A] text-sm font-medium hover:bg-[#8FB88A] transition-colors"
           >
-            Napisz do nas
+            {t("order.writeUs")}
           </a>
         </div>
       </div>

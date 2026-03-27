@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/cn";
 import type { MenuItem } from "@/config/site-data";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface MenuCardProps {
   item: MenuItem;
@@ -13,6 +14,7 @@ interface MenuCardProps {
 
 export default function MenuCard({ item, className }: MenuCardProps) {
   const router = useRouter();
+  const { t } = useTranslation();
 
   const handleAddToCart = () => {
     // TODO: dodaj logikę zapisu do koszyka (Context/localStorage)
@@ -69,7 +71,7 @@ export default function MenuCard({ item, className }: MenuCardProps) {
             )}
           >
             <ShoppingCart size={14} strokeWidth={2.2} />
-            Dodaj do koszyka
+            {t("menuPage.addToCart")}
           </button>
         </div>
       </div>
