@@ -223,7 +223,7 @@ export const MENU_ITEMS: readonly MenuItem[] = [
     ingredients: ["Pulpa mango Alphonso (35%)", "Mleko kokosowe", "Śmietanka 36%", "Cukier", "Sok z limonki"],
     price: "24,00 zł",
     image:
-      "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=600&q=85",
+      "https://images.unsplash.com/photo-1503376763036-2cb78f86d646?auto=format&fit=crop&w=600&q=85",
   },
 ] as const;
 
