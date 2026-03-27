@@ -66,12 +66,12 @@ export default function HeroDesktop({
         }}
       >
         <Image
-          src={HERO.image}
+          src={HERO.imageDesktop}
           alt={HERO.imageAlt}
           fill
           className="object-cover"
           priority
-          sizes="(min-width: 1024px) 100vw, 100vw"
+          sizes="(min-width: 1024px) 50vw, 100vw"
         />
       </div>
 

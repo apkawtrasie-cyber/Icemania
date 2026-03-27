@@ -1,9 +1,7 @@
 "use client";
 
 const hours = [
-  { day: "Poniedziałek – Piątek", time: "12:00 – 20:00" },
-  { day: "Sobota", time: "10:00 – 21:00" },
-  { day: "Niedziela", time: "11:00 – 19:00" },
+  { day: "Codziennie", time: "11:00 – 20:00" },
 ];
 
 export default function ContactSection() {
@@ -13,17 +11,27 @@ export default function ContactSection() {
       className="w-full bg-[#F9F5E7] py-24 lg:py-36"
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-16">
+        {/* CTA Header */}
+        <div className="text-center mb-16">
+          <h2 className="font-serif text-4xl lg:text-5xl font-bold text-[#5C1A1B] mb-4">
+            Masz ochotę na prawdziwe lody?
+          </h2>
+          <p className="text-lg text-[#2A1A1A]/60">
+            Czekamy na Was codziennie od 11:00 do 20:00
+          </p>
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Lewa kolumna — info */}
           <div>
             <p className="text-[11px] uppercase tracking-[0.28em] text-[#B4CFB0] font-semibold mb-5">
               Odwiedź nas
             </p>
-            <h2 className="font-serif text-5xl lg:text-[3.6rem] font-bold text-[#5C1A1B] leading-[1.0] mb-10">
+            <h3 className="font-serif text-4xl lg:text-5xl font-bold text-[#5C1A1B] leading-[1.0] mb-10">
               Gdzie nas
               <br />
               <em className="italic">znajdziesz?</em>
-            </h2>
+            </h3>
 
             {/* Adres */}
             <div className="flex gap-4 mb-8">
@@ -53,9 +61,9 @@ export default function ContactSection() {
                   Lodziarnia Icemania
                 </p>
                 <p className="text-[#2A1A1A]/55 text-sm leading-relaxed">
-                  ul. Słodka 14, 00-001 Warszawa
+                  ul. Główna 42, 21-050 Michów
                   <br />
-                  Śródmieście, przy Placu Zbawiciela
+                  woj. lubelskie, Polska
                 </p>
               </div>
             </div>
@@ -82,10 +90,10 @@ export default function ContactSection() {
               <div>
                 <p className="font-semibold text-[#5C1A1B] mb-1">Telefon</p>
                 <a
-                  href="tel:+48123456789"
+                  href="tel:+48812345678"
                   className="text-[#2A1A1A]/55 text-sm hover:text-[#5C1A1B] transition-colors"
                 >
-                  +48 123 456 789
+                  +48 81 234 56 78
                 </a>
               </div>
             </div>
@@ -118,10 +126,10 @@ export default function ContactSection() {
               <div>
                 <p className="font-semibold text-[#5C1A1B] mb-1">E-mail</p>
                 <a
-                  href="mailto:czesc@icemania.pl"
+                  href="mailto:cześć@icemania.pl"
                   className="text-[#2A1A1A]/55 text-sm hover:text-[#5C1A1B] transition-colors"
                 >
-                  czesc@icemania.pl
+                  cześć@icemania.pl
                 </a>
               </div>
             </div>
@@ -147,62 +155,19 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* Prawa kolumna — formularz */}
+          {/* Prawa kolumna — mapa Google */}
           <div className="lg:mt-20">
-            <div className="rounded-3xl bg-white shadow-lg shadow-[#5C1A1B]/5 p-8 lg:p-10">
-              <h3 className="font-serif text-2xl font-bold text-[#5C1A1B] mb-8">
-                Napisz do nas
-              </h3>
-              <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-medium text-[#2A1A1A]/50 uppercase tracking-wider mb-2">
-                      Imię
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full h-12 px-4 rounded-xl border border-[#EDE5CA] bg-[#F9F5E7] text-[#2A1A1A] text-sm placeholder:text-[#2A1A1A]/30 focus:outline-none focus:border-[#5C1A1B] transition-colors"
-                      placeholder="Anna"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium text-[#2A1A1A]/50 uppercase tracking-wider mb-2">
-                      Nazwisko
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full h-12 px-4 rounded-xl border border-[#EDE5CA] bg-[#F9F5E7] text-[#2A1A1A] text-sm placeholder:text-[#2A1A1A]/30 focus:outline-none focus:border-[#5C1A1B] transition-colors"
-                      placeholder="Kowalska"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-xs font-medium text-[#2A1A1A]/50 uppercase tracking-wider mb-2">
-                    E-mail
-                  </label>
-                  <input
-                    type="email"
-                    className="w-full h-12 px-4 rounded-xl border border-[#EDE5CA] bg-[#F9F5E7] text-[#2A1A1A] text-sm placeholder:text-[#2A1A1A]/30 focus:outline-none focus:border-[#5C1A1B] transition-colors"
-                    placeholder="anna@email.pl"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-medium text-[#2A1A1A]/50 uppercase tracking-wider mb-2">
-                    Wiadomość
-                  </label>
-                  <textarea
-                    rows={5}
-                    className="w-full px-4 py-3 rounded-xl border border-[#EDE5CA] bg-[#F9F5E7] text-[#2A1A1A] text-sm placeholder:text-[#2A1A1A]/30 focus:outline-none focus:border-[#5C1A1B] transition-colors resize-none"
-                    placeholder="Zapytaj o smaki, zamówienia i catering..."
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full rounded-full bg-[#5C1A1B] text-[#F9F5E7] text-sm font-medium hover:bg-[#3d1112] transition-colors duration-200 py-3.5"
-                >
-                  Wyślij wiadomość
-                </button>
-              </form>
+            <div className="rounded-3xl bg-white shadow-lg shadow-[#5C1A1B]/5 p-4 h-[500px] lg:h-[600px]">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2506.0!2d22.3!3d51.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDMwJzAwLjAiTiAyMsKwMTgnMDAuMCJF!5e0!3m2!1spl!2spl!4v1700000000000"
+                width="100%"
+                height="100%"
+                style={{ border: 0, borderRadius: "20px" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Lodziarnia Icemania - Michów"
+              />
             </div>
           </div>
         </div>

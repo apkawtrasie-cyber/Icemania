@@ -18,9 +18,27 @@ export interface UserData {
   address: string;
 }
 
+export interface OrderItem {
+  id: number;
+  productName: string;
+  quantity: number;
+  price: string;
+  image?: string;
+}
+
+export interface Order {
+  id: string;
+  items: OrderItem[];
+  total: string;
+  status: "pending" | "processing" | "shipped" | "delivered" | "cancelled";
+  createdAt: string;
+  deliveryAddress: string;
+}
+
 interface AuthState {
   user: UserData | null;
   isLoggedIn: boolean;
+  orders: Order[];
 }
 
 interface AuthContextValue extends AuthState {
@@ -28,7 +46,8 @@ interface AuthContextValue extends AuthState {
   register: (email: string, password: string, name: string) => string | null;
   logout: () => void;
   updateProfile: (data: Partial<UserData>) => void;
-  changePassword: (oldPassword: string, newPassword: string) => string | null;
+  addOrder: (order: Omit<Order, "id" | "createdAt">) => void;
+  cancelOrder: (orderId: string) => void;
 }
 
 // ── Storage keys ─────────────────────────────────────────────────────────────
@@ -74,6 +93,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<AuthState>({
     user: null,
     isLoggedIn: false,
+    orders: [],
   });
 
   // Restore session on mount
@@ -84,7 +104,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const found = users.find((u) => u.email === email);
     if (found) {
       const { password: _, ...userData } = found;
-      setState({ user: userData, isLoggedIn: true });
+      setState({ user: userData, isLoggedIn: true, orders: [] });
     }
   }, []);
 
@@ -94,7 +114,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (!found) return "Nie znaleziono konta z tym adresem e-mail.";
     if (found.password !== password) return "Nieprawidłowe hasło.";
     const { password: _, ...userData } = found;
-    setState({ user: userData, isLoggedIn: true });
+    setState({ user: userData, isLoggedIn: true, orders: [] });
     setSession(email);
     return null;
   }, []);
@@ -114,7 +134,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       };
       saveUsers([...users, newUser]);
       const { password: _, ...userData } = newUser;
-      setState({ user: userData, isLoggedIn: true });
+      setState({ user: userData, isLoggedIn: true, orders: [] });
       setSession(email);
       return null;
     },
@@ -122,7 +142,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   );
 
   const logout = useCallback(() => {
-    setState({ user: null, isLoggedIn: false });
+    setState({ user: null, isLoggedIn: false, orders: [] });
     setSession(null);
   }, []);
 
@@ -156,6 +176,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     []
   );
 
+  const addOrder = useCallback((order: Omit<Order, "id" | "createdAt">) => {
+    const newOrder: Order = {
+      ...order,
+      id: Math.random().toString(36).substring(2, 9),
+      createdAt: new Date().toISOString(),
+    };
+    setState((prev) => ({
+      ...prev,
+      orders: [newOrder, ...prev.orders],
+    }));
+  }, []);
+
+  const cancelOrder = useCallback((orderId: string) => {
+    setState((prev) => ({
+      ...prev,
+      orders: prev.orders.map((o) =>
+        o.id === orderId ? { ...o, status: "cancelled" as const } : o
+      ),
+    }));
+  }, []);
+
   const value = useMemo<AuthContextValue>(
     () => ({
       ...state,
@@ -164,8 +205,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       logout,
       updateProfile,
       changePassword,
+      addOrder,
+      cancelOrder,
     }),
-    [state, login, register, logout, updateProfile, changePassword]
+    [state, login, register, logout, updateProfile, changePassword, addOrder, cancelOrder]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
